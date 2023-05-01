@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+
+# BASE DE DATOS (MARIADB)
+
+  db:
+
+    container_name: db
+    image: mariadb:latest
+    environment:
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_DATABASE=biblioteca
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./db/01_create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
+      - ./db/02_fill_tables.sql:/docker-entrypoint-initdb.d/02_fill_tables.sql
