@@ -7,6 +7,7 @@ services:
 
     container_name: db
     image: mariadb:latest
+    restart: always
     environment:
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
@@ -15,5 +16,20 @@ services:
     ports:
       - "3307:3306"
     volumes:
+
+      # Tablas y objetos insertados
       - ./db/01_create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
       - ./db/02_fill_tables.sql:/docker-entrypoint-initdb.d/02_fill_tables.sql
+
+      # Function
+      - ./src/function.sql:/docker-entrypoint-initdb.d/function.sql
+
+      # Procedure 
+      - ./src/procedure.sql:/docker-entrypoint-initdb.d/procedure.sql
+
+      # Cursor 
+      - ./src/cursor.sql:/docker-entrypoint-initdb.d/cursor.sql
+
+      # Trigger 
+      - ./src/trigger.sql:/docker-entrypoint-initdb.d/trigger.sql
+

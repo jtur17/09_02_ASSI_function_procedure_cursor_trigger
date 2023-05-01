@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS "biblioteca";
 USE biblioteca;
 
 CREATE TABLE IF NOT EXISTS libros(
